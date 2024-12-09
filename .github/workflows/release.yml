@@ -1,0 +1,43 @@
+name: Trigger Release Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version '
+        required: true
+      release_body:
+        description: 'What is changed in new version?'
+        required: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+      
+    permissions:
+      contents: write  # To push changes to the public repository
+
+    steps:
+      # Checkout the public repository
+      - name: Checkout public repository
+        uses: actions/checkout@v4
+        with:
+          repository: zekiamani/Android.SDK.AmaniVoiceAssistant
+          token: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
+          path: public_repo
+
+      # Create a release in the public repository
+      - name: Create a release
+        uses: actions/create-release@v1
+        with:
+          token: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
+          repository: zekiamani/Android.SDK.AmaniVoiceAssistant
+          tag_name: ${{ github.event.inputs.release_version }}
+          release_name: ${{ github.event.inputs.release_version }}
+          body: |
+            ${{ github.event.inputs.release_body }}
+          draft: false
+          prerelease: false
+          files: public_repo/voice_assistant.aar
+        env:
+          GITHUB_TOKEN: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
