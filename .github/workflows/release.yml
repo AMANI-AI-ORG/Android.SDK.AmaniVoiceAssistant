@@ -1,7 +1,8 @@
 name: Trigger Release Version
 
-on:
-  workflow_dispatch:
+on:    
+  repository_dispatch:
+    types: [release-trigger]
     inputs:
       release_version:
         description: 'Release version '
@@ -24,7 +25,7 @@ jobs:
         with:
           repository: zekiamani/Android.SDK.AmaniVoiceAssistant
           token: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
-          path: public_repo
+          path: public_repo  
 
       # Create a release in the public repository
       - name: Create a release
