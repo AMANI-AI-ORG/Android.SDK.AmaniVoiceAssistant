@@ -29,16 +29,16 @@ jobs:
 
       # Create a release in the public repository
       - name: Create a release
+        id: create_release  # Add an ID to refer to this step later
         uses: actions/create-release@v1
         with:
-          token: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
+          token: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}   
           repository: zekiamani/Android.SDK.AmaniVoiceAssistant
-          tag_name: ${{ github.event.inputs.release_version }}
-          release_name: ${{ github.event.inputs.release_version }}
-          body: |
-            ${{ github.event.inputs.release_body }}
+          tag_name: ${{ github.event.client_payload.release_version }}
+          release_name: ${{ github.event.client_payload.release_version }}
+          body: ${{ github.event.client_payload.release_body }}
           draft: false
           prerelease: false
-          files: public_repo/voice_assistant.aar
+          files: public_repo/voice_assistant-release.aar
         env:
           GITHUB_TOKEN: ${{ secrets.VOICE_ASSISTANT_DEPLOY }}
