@@ -1,3 +1,6 @@
+import java.net.URI
+import java.net.URL
+
 pluginManagement {
     repositories {
         google {
@@ -19,6 +22,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = URI("https://jitpack.io") }
         flatDir {
             dirs("libs") // This tells Gradle to look for AAR files in the libs directory
         }

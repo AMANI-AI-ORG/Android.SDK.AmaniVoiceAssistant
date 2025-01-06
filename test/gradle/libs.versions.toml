@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.1"
+androidSdkAmanivoiceassistant = "1.0.0"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -10,6 +11,7 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 
 [libraries]
+android-sdk-amanivoiceassistant = { module = "com.github.AMANI-AI-ORG:Android.SDK.AmaniVoiceAssistant", version.ref = "androidSdkAmanivoiceassistant" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

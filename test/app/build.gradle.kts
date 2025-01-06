@@ -67,5 +67,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(files("libs/voice_assistant-release.aar"))  // Path to the AAR file in the libs folder
+    //For Manually SDK import
+    //implementation(files("libs/voice_assistant-release.aar"))// Path to the AAR file in the libs folder
+
+    implementation (libs.android.sdk.amanivoiceassistant)
 }
